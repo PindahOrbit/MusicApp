@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    var artistName = "DJ Pulse"; // Dummy data, replace with actual logged-in artist's name
+}
+
+<div class="container mt-4">
+    <!-- Welcome Section -->
+    <div class="text-center mb-4">
+        <h1 class="display-4 text-primary fw-bold">🎧 Welcome back, @artistName!</h1>
+        <p class="lead">Your music, your rights, your rules. Manage everything here.</p>
+    </div>
+
+    <!-- Personal Music Stats -->
+    <div class="row text-center">
+        <div class="col-md-3">
+            <div class="card shadow-lg border-0 p-3">
+                <h4 class="text-success fw-bold">🎼 18</h4>
+                <p class="text-muted">Songs Uploaded</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-lg border-0 p-3">
+                <h4 class="text-danger fw-bold">⚠️ 2</h4>
+                <p class="text-muted">Copyright Violations</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-lg border-0 p-3">
+                <h4 class="text-warning fw-bold">💰 5</h4>
+                <p class="text-muted">Pending Licensing Requests</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-lg border-0 p-3">
+                <h4 class="text-primary fw-bold">🔄 7,320</h4>
+                <p class="text-muted">Streams This Month</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Your Songs -->
+    <div class="mt-5">
+        <h3 class="fw-bold text-primary">🎶 Your Top Songs</h3>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="mb-1">🌙 Night Vibes</h5>
+                    <small class="text-muted">Streams: 2,145 | Copyrighted</small>
+                </div>
+                <button class="btn btn-sm btn-outline-primary">Manage</button>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="mb-1">⚡ Electric Dreams</h5>
+                    <small class="text-muted">Streams: 1,874 | Licensed by 2 Users</small>
+                </div>
+                <button class="btn btn-sm btn-outline-primary">Manage</button>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="mb-1">🌊 Waves of Sound</h5>
+                    <small class="text-muted">Streams: 1,430 | No Violations</small>
+                </div>
+                <button class="btn btn-sm btn-outline-primary">Manage</button>
+            </a>
+        </div>
+    </div>
+
+    <!-- Licensing Requests -->
+    <div class="mt-5">
+        <h3 class="fw-bold text-primary">📜 Licensing Requests</h3>
+        <table class="table table-hover">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th>Requester</th>
+                    <th>Song</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alice Beats</td>
+                    <td>Remix of "Night Vibes"</td>
+                    <td><span class="badge bg-warning">Pending</span></td>
+                    <td><button class="btn btn-sm btn-success">Approve</button> <button class="btn btn-sm btn-danger">Reject</button></td>
+                </tr>
+                <tr>
+                    <td>Bob Marley Jr.</td>
+                    <td>Sample from "Electric Dreams"</td>
+                    <td><span class="badge bg-success">Approved</span></td>
+                    <td><button class="btn btn-sm btn-secondary" disabled>Approved</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="mt-5">
+        <h3 class="fw-bold text-primary">⚡ Quick Actions</h3>
+        <div class="row">
+            <div class="col-md-3">
+                <a class="btn btn-lg btn-success w-100 mb-3" asp-controller="Upload" asp-action="Index">📤 Upload a New Song</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-lg btn-info w-100 mb-3" asp-controller="Scan" asp-action="Index">🔍 Scan for Copyright Issues</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-lg btn-warning w-100 mb-3" asp-controller="Licensing" asp-action="Requests">💰 Manage Licensing</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-lg btn-danger w-100 mb-3" asp-controller="Reports" asp-action="Index">📊 View Insights</a>
+            </div>
+        </div>
+    </div>
+</div>
