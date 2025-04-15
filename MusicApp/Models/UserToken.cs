@@ -10,19 +10,19 @@ namespace MusicApp.Models;
 public partial class UserToken
 {
     [Key]
-    public string UserId { get; set; }
+    public string UserId { get; set; } = null!;
 
     [Key]
     [StringLength(128)]
-    public string LoginProvider { get; set; }
+    public string LoginProvider { get; set; } = null!;
 
     [Key]
     [StringLength(128)]
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
 
-    public string Value { get; set; }
+    public string? Value { get; set; }
 
     [ForeignKey("UserId")]
     [InverseProperty("UserTokens")]
-    public virtual User User { get; set; }
+    public virtual User User { get; set; } = null!;
 }

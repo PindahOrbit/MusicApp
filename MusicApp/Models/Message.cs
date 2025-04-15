@@ -12,28 +12,25 @@ public partial class Message
     [Column("id")]
     public int Id { get; set; }
 
-    [Required]
     [Column("sender_id")]
     [StringLength(450)]
-    public string SenderId { get; set; }
+    public string SenderId { get; set; } = null!;
 
-    [Required]
     [Column("receiver_id")]
     [StringLength(450)]
-    public string ReceiverId { get; set; }
+    public string ReceiverId { get; set; } = null!;
 
-    [Required]
     [Column("message")]
-    public string Message1 { get; set; }
+    public string Message1 { get; set; } = null!;
 
     [Column("sent_at", TypeName = "datetime")]
     public DateTime? SentAt { get; set; }
 
     [ForeignKey("ReceiverId")]
     [InverseProperty("MessageReceivers")]
-    public virtual User Receiver { get; set; }
+    public virtual User Receiver { get; set; } = null!;
 
     [ForeignKey("SenderId")]
     [InverseProperty("MessageSenders")]
-    public virtual User Sender { get; set; }
+    public virtual User Sender { get; set; } = null!;
 }

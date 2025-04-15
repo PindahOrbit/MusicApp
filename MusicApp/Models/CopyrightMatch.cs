@@ -26,9 +26,9 @@ public partial class CopyrightMatch
 
     [ForeignKey("MatchedTrackId")]
     [InverseProperty("CopyrightMatchMatchedTracks")]
-    public virtual Track MatchedTrack { get; set; }
+    public virtual Track MatchedTrack { get; set; } = null!;
 
     [ForeignKey("TrackId")]
     [InverseProperty("CopyrightMatchTracks")]
-    public virtual Track Track { get; set; }
+    public virtual Track Track { get; set; } = null!;
 }

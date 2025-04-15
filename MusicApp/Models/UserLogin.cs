@@ -12,18 +12,17 @@ public partial class UserLogin
 {
     [Key]
     [StringLength(128)]
-    public string LoginProvider { get; set; }
+    public string LoginProvider { get; set; } = null!;
 
     [Key]
     [StringLength(128)]
-    public string ProviderKey { get; set; }
+    public string ProviderKey { get; set; } = null!;
 
-    public string ProviderDisplayName { get; set; }
+    public string? ProviderDisplayName { get; set; }
 
-    [Required]
-    public string UserId { get; set; }
+    public string UserId { get; set; } = null!;
 
     [ForeignKey("UserId")]
     [InverseProperty("UserLogins")]
-    public virtual User User { get; set; }
+    public virtual User User { get; set; } = null!;
 }

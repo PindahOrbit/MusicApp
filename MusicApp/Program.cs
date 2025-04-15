@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MusicApp.Areas.Identity.Data;
 using MusicApp.Data;
+using MusicApp.Hubs; 
 using System;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("MusicConn") ?? throw new InvalidOperationException("Connection string 'MusicAppIdentityContextConnection' not found.");
@@ -18,6 +19,8 @@ builder.Services.AddDefaultIdentity<MusicAppUser>(options => options.SignIn.Requ
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSignalR();
+ 
 
 var app = builder.Build();
 
@@ -30,12 +33,13 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles(); 
+app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
 app.MapRazorPages();
+app.MapHub<ChatHub>("/chatHub");
 
 app.MapControllerRoute(
     name: "default",

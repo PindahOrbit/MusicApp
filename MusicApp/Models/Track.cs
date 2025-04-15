@@ -12,27 +12,24 @@ public partial class Track
     [Column("id")]
     public int Id { get; set; }
 
-    [Required]
     [Column("user_id")]
     [StringLength(450)]
-    public string UserId { get; set; }
+    public string UserId { get; set; } = null!;
 
-    [Required]
     [Column("title")]
     [StringLength(255)]
-    public string Title { get; set; }
+    public string Title { get; set; } = null!;
 
     [Column("genre")]
     [StringLength(100)]
-    public string Genre { get; set; }
+    public string? Genre { get; set; }
 
     [Column("release_date")]
     public DateOnly? ReleaseDate { get; set; }
 
-    [Required]
     [Column("file_path")]
     [StringLength(500)]
-    public string FilePath { get; set; }
+    public string FilePath { get; set; } = null!;
 
     [Column("created_at", TypeName = "datetime")]
     public DateTime? CreatedAt { get; set; }
@@ -51,5 +48,5 @@ public partial class Track
 
     [ForeignKey("UserId")]
     [InverseProperty("Tracks")]
-    public virtual User User { get; set; }
+    public virtual User User { get; set; } = null!;
 }

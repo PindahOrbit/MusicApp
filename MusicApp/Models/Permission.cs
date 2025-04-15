@@ -12,26 +12,25 @@ public partial class Permission
     [Column("id")]
     public int Id { get; set; }
 
-    [Required]
     [Column("requesting_artist_id")]
     [StringLength(450)]
-    public string RequestingArtistId { get; set; }
+    public string RequestingArtistId { get; set; } = null!;
 
     [Column("track_id")]
     public int TrackId { get; set; }
 
     [Column("status")]
     [StringLength(50)]
-    public string Status { get; set; }
+    public string? Status { get; set; }
 
     [Column("request_date", TypeName = "datetime")]
     public DateTime? RequestDate { get; set; }
 
     [ForeignKey("RequestingArtistId")]
     [InverseProperty("Permissions")]
-    public virtual User RequestingArtist { get; set; }
+    public virtual User RequestingArtist { get; set; } = null!;
 
     [ForeignKey("TrackId")]
     [InverseProperty("Permissions")]
-    public virtual Track Track { get; set; }
+    public virtual Track Track { get; set; } = null!;
 }

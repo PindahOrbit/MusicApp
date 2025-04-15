@@ -9,15 +9,15 @@ namespace MusicApp.Models;
 public partial class Role
 {
     [Key]
-    public string Id { get; set; }
+    public string Id { get; set; } = null!;
 
     [StringLength(256)]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [StringLength(256)]
-    public string NormalizedName { get; set; }
+    public string? NormalizedName { get; set; }
 
-    public string ConcurrencyStamp { get; set; }
+    public string? ConcurrencyStamp { get; set; }
 
     [InverseProperty("Role")]
     public virtual ICollection<RoleClaim> RoleClaims { get; set; } = new List<RoleClaim>();

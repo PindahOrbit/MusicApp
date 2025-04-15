@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MusicApp.Areas.Identity.Data;
 using MusicApp.Data;
-using MusicApp.Models;
+using MusicApp.Models; 
 
 namespace MusicApp.Controllers
 {
@@ -21,12 +21,16 @@ namespace MusicApp.Controllers
     {
         private readonly MusicDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly UserManager<MusicAppUser> _userManager;
-        public TracksController(MusicDbContext context, IWebHostEnvironment webHostEnvironment, UserManager<MusicAppUser> userManager)
+        private readonly UserManager<MusicAppUser> _userManager; 
+
+        public TracksController(
+            MusicDbContext context,
+            IWebHostEnvironment webHostEnvironment,
+            UserManager<MusicAppUser> userManager)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
-            _userManager = userManager;
+            _userManager = userManager; 
         }
 
         // GET: Tracks
@@ -58,13 +62,13 @@ namespace MusicApp.Controllers
         // GET: Tracks/Create
         public async Task<IActionResult> Create()
         {
-            return View(new Track() { UserId = (await _userManager.GetUserAsync(User)).Id});
+            return View(new Track() { UserId = (await _userManager.GetUserAsync(User)).Id });
         }
 
         // POST: Tracks/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(  Track track)
+        public async Task<IActionResult> Create(Track track)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
@@ -86,7 +90,7 @@ namespace MusicApp.Controllers
             }
 
             // Ensure the uploads directory exists
-            var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads",userId);
+            var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", userId);
             if (!Directory.Exists(uploadPath))
             {
                 Directory.CreateDirectory(uploadPath);
@@ -102,13 +106,15 @@ namespace MusicApp.Controllers
             }
 
             // Save relative path to DB
-            track.FilePath = "/uploads/"+userId+"/" + fileName;
+            track.FilePath = "/uploads/" + userId + "/" + fileName;
             track.CreatedAt = DateTime.UtcNow;
             track.UserId = userId;
 
             _context.Add(track);
             await _context.SaveChangesAsync();
 
+        
+         
             return RedirectToAction(nameof(Index));
         }
 
@@ -162,7 +168,7 @@ namespace MusicApp.Controllers
                 // Handle file upload if a new file is provided
                 if (file != null && file.Length > 0)
                 {
-                    var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads",track.UserId);
+                    var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", track.UserId);
 
                     // Ensure uploads directory exists
                     if (!Directory.Exists(uploadPath))
